@@ -12,6 +12,13 @@
 
 #include "philo.h"
 
+void	set_death(t_philo *philo)
+{
+	pthread_mutex_lock(philo->dead_lock);
+	*philo->dead = 1;
+	pthread_mutex_unlock(philo->dead_lock);
+}
+
 static void	*philo_one(void *phi)
 {
 	t_philo	*philo;

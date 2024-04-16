@@ -26,6 +26,7 @@
 # define ERR_ARG -1
 # define SUCCESS 777
 # define ERR_THREAD -5
+# define ERR_THREAD_JOIN -6
 
 typedef struct s_philo
 {
@@ -71,7 +72,7 @@ int					load_struct_eat(t_philo *phi, char **argv);
 void				print_struct(t_philo *phi);
 int					atoi_flag(char *s, int *flag);
 int					is_whitespaces(int c);
-int					ft_usleep(size_t milliseconds);
+int					ft_usleep(size_t milliseconds, t_philo *philo);
 size_t				get_current_time(void);
 int					free_all(t_threads *thread, int err);
 int					init_threads(t_threads *thread);

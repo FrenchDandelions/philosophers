@@ -16,14 +16,18 @@ int	print_error(t_philo *phi, int status)
 {
 	(void)phi;
 	if (status == ERR_ARG)
-		return (printf("Error\nWrong args passsed as parameters\n"), 1);
+		return (printf("Error\nWrong args passsed as parameters\n"), 2);
 	else if (status == ERR_PARS)
-		return (printf("Error\nFound something else than numbers\n"), 1);
+		return (printf("Error\nFound something else than numbers\n"), 2);
 	else if (status == ERR_NB)
 		return (printf("Error\nToo many philos or negative numbers found\n"),
-			1);
+			2);
 	else if (status == ERR_MALLOC)
 		return (printf("Error\nMalloc\n"), -2);
+	else if (status == ERR_THREAD)
+		return (printf("Error\nThread creation failed\n"), -2);
+	else if (status == ERR_THREAD_JOIN)
+		return (printf("Error\nThread join failed\n"), -2);
 	return (1);
 }
 
@@ -44,6 +48,6 @@ int	main(int argc, char **argv)
 		return (print_error(&phi, status));
 	status = init_philosophy(&phi, &thread);
 	if (status != SUCCESS)
-		return (status);
+		return (print_error(&phi, status));
 	return (0);
 }

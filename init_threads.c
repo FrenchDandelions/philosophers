@@ -33,7 +33,7 @@ static void	eat_odd(t_philo *philo)
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
-	ft_usleep(philo->time_to_eat);
+	ft_usleep(philo->time_to_eat, philo);
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
@@ -51,7 +51,7 @@ static void	eat_even(t_philo *philo)
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
-	ft_usleep(philo->time_to_eat);
+	ft_usleep(philo->time_to_eat, philo);
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
@@ -69,7 +69,7 @@ void	*ft_routine(void *phi)
 		else
 			eat_odd(philo);
 		print_message(philo, "is sleeping", philo->id);
-		ft_usleep(philo->time_to_sleep);
+		ft_usleep(philo->time_to_sleep, philo);
 		print_message(philo, "is thinking", philo->id);
 	}
 	return (phi);
@@ -92,11 +92,11 @@ int	init_threads(t_threads *thread)
 	}
 	i = 0;
 	if (pthread_join(checker, NULL))
-		return (free_all(thread, ERR_THREAD));
+		return (free_all(thread, ERR_THREAD_JOIN));
 	while (i < thread->nb_philo)
 	{
 		if (pthread_join(thread->philos[i].thread, NULL))
-			return (free_all(thread, ERR_THREAD));
+			return (free_all(thread, ERR_THREAD_JOIN));
 		i++;
 	}
 	if (thread->all_eaten)

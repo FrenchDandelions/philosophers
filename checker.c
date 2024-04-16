@@ -38,7 +38,7 @@ static int	monitor_meal_checker(t_philo *philos, int must_eat)
 			total_meals++;
 		pthread_mutex_unlock(philos[i].meal_lock);
 		i++;
-		ft_usleep(5, &philos[i - 1]);
+		ft_usleep(1, &philos[i - 1]);
 	}
 	if (total_meals >= philos[0].nb_philo)
 	{
@@ -58,10 +58,10 @@ static int	monitor_death_checker(t_philo *philos, int nb_philos)
 	i = 0;
 	while (i < nb_philos)
 	{
-		ft_usleep(5, &philos[i]);
+		ft_usleep(1, &philos[i]);
 		if (monitor_death_philo(&philos[i]))
 		{
-			print_message(&philos[i], "died", philos[i].id);
+			print_message(&philos[i], "\033[1;31mdied\033[0m", philos[i].id);
 			set_death(&philos[i]);
 			return (1);
 		}

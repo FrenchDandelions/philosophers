@@ -16,18 +16,20 @@ int	print_error(t_philo *phi, int status)
 {
 	(void)phi;
 	if (status == ERR_ARG)
-		return (printf("Error\nWrong args passsed as parameters\n"), 2);
+		return (printf("%sError\nWrong args passsed as parameters\n%s", RED,
+				RESET), 2);
 	else if (status == ERR_PARS)
-		return (printf("Error\nFound something else than numbers\n"), 2);
+		return (printf("%sError\nFound something else than numbers\n%s", RED,
+				RESET), 2);
 	else if (status == ERR_NB)
-		return (printf("Error\nToo many philos or negative numbers found\n"),
-			2);
+		return (printf("%sError\nToo many philos or negative numbers found\n%s",
+				RED, RESET), 2);
 	else if (status == ERR_MALLOC)
-		return (printf("Error\nMalloc\n"), -2);
+		return (printf("%sError\nMalloc\n%s", RED, RESET), -2);
 	else if (status == ERR_THREAD)
-		return (printf("Error\nThread creation failed\n"), -2);
+		return (printf("%sError\nThread creation failed\n%s", RED, RESET), -2);
 	else if (status == ERR_THREAD_JOIN)
-		return (printf("Error\nThread join failed\n"), -2);
+		return (printf("%sError\nThread join failed\n%s", RED, RESET), -2);
 	return (1);
 }
 

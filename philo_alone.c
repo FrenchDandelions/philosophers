@@ -25,7 +25,8 @@ static void	*philo_one(void *phi)
 
 	philo = (t_philo *)phi;
 	pthread_mutex_lock(philo->r_fork);
-	print_message(philo, "has taken his right fork", philo->id);
+	print_message(philo, "\033[1;93mhas taken his right fork\033[0m",
+		philo->id);
 	pthread_mutex_unlock(philo->r_fork);
 	ft_usleep(philo->time_to_die, philo);
 	print_message(philo, "died", philo->id);

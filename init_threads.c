@@ -27,14 +27,12 @@ static void	eat_odd(t_philo *philo)
 	print_message(philo, "\033[1;93mhas taken a fork\033[0m", philo->id);
 	pthread_mutex_lock(philo->r_fork);
 	print_message(philo, "\033[1;93mhas taken a fork\033[0m", philo->id);
-	philo->eating = 1;
 	pthread_mutex_lock(philo->meal_lock);
 	print_message(philo, "\033[1;91mis eating\033[0m", philo->id);
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(philo->time_to_eat, philo);
-	philo->eating = 0;
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
@@ -45,14 +43,12 @@ static void	eat_even(t_philo *philo)
 	print_message(philo, "\033[1;93mhas taken a fork\033[0m", philo->id);
 	pthread_mutex_lock(philo->l_fork);
 	print_message(philo, "\033[1;93mhas taken a fork\033[0m", philo->id);
-	philo->eating = 1;
 	pthread_mutex_lock(philo->meal_lock);
 	print_message(philo, "\033[1;91mis eating\033[0m", philo->id);
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(philo->time_to_eat, philo);
-	philo->eating = 0;
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }

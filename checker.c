@@ -15,7 +15,8 @@
 static int	monitor_death_philo(t_philo *philo)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if (get_current_time() - philo->last_meal >= philo->time_to_die)
+	if (get_current_time() - philo->last_meal >= philo->time_to_die
+		&& philo->eating == 0)
 		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);

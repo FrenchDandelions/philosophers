@@ -29,7 +29,7 @@ static void	*philo_one(void *phi)
 		philo->id);
 	pthread_mutex_unlock(philo->r_fork);
 	ft_usleep(philo->time_to_die, philo);
-	print_message(philo, "died", philo->id);
+	print_message(philo, "\033[1;31mdied\033[0m", philo->id);
 	return (phi);
 }
 

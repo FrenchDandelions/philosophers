@@ -29,9 +29,7 @@ static int	monitor_meal_checker(t_philo *philos, int must_eat)
 
 	total_meals = 0;
 	i = 0;
-	if (must_eat == -1)
-		return (0);
-	while (i < philos[0].nb_philo)
+	while (must_eat != -1 && i < philos[0].nb_philo)
 	{
 		pthread_mutex_lock(philos[i].meal_lock);
 		if (philos[i].meals_eaten >= must_eat)
@@ -40,7 +38,7 @@ static int	monitor_meal_checker(t_philo *philos, int must_eat)
 		i++;
 		ft_usleep(1, &philos[i - 1]);
 	}
-	if (total_meals >= philos[0].nb_philo)
+	if (must_eat != -1 && total_meals >= philos[0].nb_philo)
 	{
 		set_death(&philos[0]);
 		pthread_mutex_lock(philos[0].all_eaten_lock);

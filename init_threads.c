@@ -71,6 +71,7 @@ void	*ft_routine(void *phi)
 		print_message(philo, "\033[1;94mis sleeping\033[0m", philo->id);
 		ft_usleep(philo->time_to_sleep, philo);
 		print_message(philo, "\033[1;92mis thinking\033[0m", philo->id);
+		ft_usleep(1, philo);
 	}
 	return (phi);
 }
